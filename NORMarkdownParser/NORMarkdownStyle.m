@@ -137,11 +137,13 @@
 }
 
 - (void)addLinkWithURL:(NSURL *)url title:(NSString *)title toRange:(NSRange)range inAttributedString:(NSMutableAttributedString *)string {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{NSLinkAttributeName : url}];
-    if (self.linkTextColor)
-        dictionary[NSForegroundColorAttributeName] = self.linkTextColor;
-    
-    [string addAttributes:dictionary range:range];
+    if (url) {
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:@{NSLinkAttributeName : url}];
+        if (self.linkTextColor)
+            dictionary[NSForegroundColorAttributeName] = self.linkTextColor;
+        
+        [string addAttributes:dictionary range:range];
+    }
 }
 
 - (void)addStrikethroughToRange:(NSRange)range inAttributedString:(NSMutableAttributedString *)string {
